@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>
+  {% for flight in flights %}
+  <br> {{ flight }}
+  {% endfor %}
+</h1>
+<br>
+<br>
+<h1>Add Flights</h1>
+<form method="POST" action="{{ url_for('index') }}">
+  <input type="text" name="origin" placeholder="Origin">
+  <input type="text" name="destination" placeholder="Destination">
+  <input type="text" name="duration" placeholder="Duration">
+  <button type="submit"> Add </button>
+</form>
+<br>
+<h1>Choose Flights by Origin or Destination</h1>
+<form method="POST" action="{{ url_for('chosen_flight') }}">
+  <input type="text" name="chosen_flight" placeholder="Flight">
+  <button type="submit"> Find </button>
+</form>
+<br>
+  {% for flights in chosen_flight %}
+  <h1>{{ flights }}</h1>
+  {% endfor%}
+{% endblock %}

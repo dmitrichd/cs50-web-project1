@@ -1,0 +1,5 @@
+__pycache__/
+.git/
+flask_session/
+venv/
+**.csv
