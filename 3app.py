@@ -27,8 +27,8 @@ session["logged_in"] = False
     def index():
         if session["logged_in"] == True:
             return redirect(url_for("library"))
-        else:
-            return redirect(url_for("login"))
+        return redirect(url_for("login"))
+
 
 @app.route("/login", methods=["GET", "POST"])
     def login():
