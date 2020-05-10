@@ -1,8 +1,9 @@
 import os
 import requests
 import json
+import string
 
-from flask import Flask, session, redirect, url_for, render_template, request, flash
+from flask import Flask, jsonify, session, redirect, url_for, render_template, request, flash
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
@@ -152,3 +153,35 @@ def books(id = None):
 
     return render_template("books.html", book = book, ratings_count = ratings_count,
     average_rating = average_rating, reviews = reviews)
+
+@app.route("/api/<string:isbn>", methods=["GET"])
+def api(isbn):
+    book = db.execute("SELECT title, author, year, isbn "
+    "FROM books_t "
+    "WHERE isbn = :isbn ",
+    {"isbn" : isbn}).fetchone()
+
+    review_count = db.execute("SELECT COUNT(reviews_t.review) "
+    "FROM reviews_t "
+    "INNER JOIN books_t "
+    "ON books_t.id = reviews_t.bid "
+    "WHERE books_t.isbn = :isbn ",
+    {"isbn" : isbn}).fetchone()
+
+    average_score = db.execute("SELECT AVG(reviews_t.review) OVER() "
+    "FROM reviews_t "
+    "INNER JOIN books_t "
+    "ON books_t.id = reviews_t.bid "
+    "WHERE books_t.isbn = :isbn ",
+    {"isbn" : isbn}).fetchone()
+
+    #for title, author, year, isbn in book
+    book = list(book)
+    return jsonify({
+    "title": book[0],
+    "author": book[1],
+    "year": book[2],
+    "isbn": book[3],
+    "review_count": int(review_count[0]),
+    "average_score": int(average_score[0])
+    })
