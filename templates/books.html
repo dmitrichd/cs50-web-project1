@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-sm">
+        <br>
+        {% for id, isbn, title, author, year in book %}
+        <table>
+          <tr>
+            <th>ISBN</th>
+            <th>{{ isbn }}</th>
+          </tr>
+          <tr>
+            <td>TITLE</td>
+            <td>{{ title }}</td>
+          </tr>
+          <tr>
+            <td>ATHOR</td>
+            <td>{{ author }}</td>
+          </tr>
+          <tr>
+            <td>YEAR</td>
+            <td>{{ year }}</td>
+          </tr>
+          {% endfor %}
+
+          <tr>
+            <td>REVIEWS</td>
+            <td>
+              {% for username, review, textrev in reviews %}
+              {{ username }} gave this book {{ review }} stars. <br> {{ textrev }}
+              <br>
+              {% endfor %}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Goodreads average</td>
+            <td>{{ average_rating }}</td>
+          </tr>
+          <tr>
+            <td>Goodreads reviews count</td>
+            <td>{{ ratings_count }}</td>
+          </tr>
+        </table>
+      </div>
+    <div class="col-sm">
+        <br>
+      <b>Did you like the Book?  Leave a review.</b>
+      <p style="color:red">{{ error }}</p>
+        <br>
+        <br>
+      <form method="POST" action="{{ bid }}">
+        <select name="review" required>
+          <option value="5">&nbsp&nbsp&nbsp&nbsp&nbsp 5 &nbsp&nbsp&nbsp&nbsp&nbsp</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+          <br>
+        </select>
+          <br>
+        <textarea name="textrev" rows="5" cols="40" >Print your review here ... </textarea>
+          <br>
+        <button type="submit" button> Submit </button>
+          <br>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

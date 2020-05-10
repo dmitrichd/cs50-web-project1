@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="regular">
+  Login to enter Library. <br><br>
+  <form method="POST" action="{{ url_for('login') }}">
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+    <button type="submit" button> Login </button>
+    <br>
+  </form>
+  <p style ="color:red">{{ error }} {{ message }}</p>
+  <br>
+    <a href="{{ url_for('register') }}">Register</a>
+</div>
+{% endblock %}

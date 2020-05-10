@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>layout template</title>
-    <style media="screen">
-      ul {
-
-        text-align: center;
-        list-style: none;
-      }
-    </style>
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <title>Project 1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename = 'styles.css')}}">
+</head>
+<body>
+  <h6 style="text-align: right"> Logged in as, {{session['username']}}&nbsp&nbsp<a href="{{ url_for('logout') }}">LOG OUT</a></h6>
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <h2>Harvard CS50 Web <br> Project 1</h2>
+  </div>
     {% block body %}
     {% endblock %}
-  </body>
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <p class="signature-text">Designed by dmitrichd@gmail.com</p>
+  </div>
+</body>
 </html>

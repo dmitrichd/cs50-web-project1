@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="regular">
+  Search results: <br><br>
+  {% for id, isbn, title, author, year in search_result %}
+  <p> <a href="books/{{ id }}" >ISBN:&nbsp&nbsp{{ isbn }},&nbsp&nbsp&nbsp&nbsp {{ title }} &nbsp&nbsp
+    BY &nbsp&nbsp {{ author }}&nbsp&nbsp PUBLISHED IN &nbsp&nbsp {{ year }} </a></p>
+  {% endfor %}
+  <br>
+  <p style ="color:red">{{ error }} {{ message }}</p>
+</div>
+{% endblock %}

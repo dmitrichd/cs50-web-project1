@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="regular">
+  Sign in to use Library. <br><br>
+  <form method="POST" action="{{ url_for('register') }}">
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+    <button type="submit" button> Signin </button>
+    <br>
+  </form>
+  <p style ="color:red">{{ error }}</p>
+</div>
+{% endblock %}
