@@ -1,17 +1,13 @@
 .my-text-style, .signature-text {
   font-family: "Lucida Console", Courier, monospace;
-  font-weight: bold;
   font-size: 1vw;
   color: #32a852;
-}
-
-.signature-text {
   font-style: italic;
 }
 
 table {
   border-collapse: collapse;
-  width: 800px;
+  width: 400px;
 }
 table th, table td {
   text-align: center;
@@ -36,9 +32,4 @@ table th, table td {
   font-size: 12pt;
   color: #32a852;
   align-items: center;
-  /* justify-content: center */
-}
-
-.error {
-  color: red
 }
