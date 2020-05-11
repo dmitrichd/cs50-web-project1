@@ -1,3 +1,6 @@
+#This is implementation of Project 1 CS50 Web Harvard database data upload program
+# needs half an hour to write 50K rows to heroku database
+
 import os
 from flask import Flask, session, render_template, request
 from sqlalchemy import create_engine
